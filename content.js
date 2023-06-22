@@ -62,49 +62,115 @@ function getCheckboxes() {
   return checkboxes;
 }
 
+function styleElements() {
+  let style = document.createElement('style');
+  style.innerHTML = `
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      padding-bottom: 40px;
+      border: 1px solid #888;
+      width: 60%;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover, .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: red;
+    }
+
+    .modal-content h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }  
+
+    .modal-content button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      float: right;
+      cursor: default;
+    }
+
+    .modal-content button:hover {
+      background-color: rgb(0, 150, 0);
+    }
+      
+    .modal-content label {
+      margin: 10px;
+      display: block;
+    }
+
+    #hideCoursesBtn {
+      margin-top: 5px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      transition: 0.3s;
+    }
+
+    #hideCoursesBtn:hover {
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    #hideCoursesBtn img {
+      width: 30px;
+      height: 30px;
+      padding: 7px 17px;
+      padding-bottom: 3px;
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
 function createModal() {
   // Create the modal container element
   var modalContainer = document.createElement("div");
-  modalContainer.style.display = "none";
   modalContainer.id = "myModal";
   modalContainer.className = "modal";
 
-  // Modal container styles
-  modalContainer.style.position = "fixed";
-  modalContainer.style.zIndex = "1";
-  modalContainer.style.left = "0";
-  modalContainer.style.top = "0";
-  modalContainer.style.width = "100%";
-  modalContainer.style.height = "100%";
-  modalContainer.style.overflow = "auto";
-  modalContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-
   var modalContent = document.createElement("div");
   modalContent.className = "modal-content";
-  modalContent.style.backgroundColor = "#fefefe";
-  modalContent.style.margin = "15% auto";
-  modalContent.style.padding = "20px";
-  modalContent.style.paddingBottom = "40px";
-  modalContent.style.border = "1px solid #888";
-  modalContent.style.width = "60%";
 
   // Create the close button element
   var closeButton = document.createElement("span");
   closeButton.className = "close";
   closeButton.innerHTML = "&times;";
-  closeButton.style.color = "#aaa";
-  closeButton.style.float = "right";
-  closeButton.style.fontSize = "28px";
-  closeButton.style.fontWeight = "bold";
-  closeButton.style.cursor = "pointer";
 
   // Create the heading element
   var heading = document.createElement("h1");
   heading.innerHTML = "Select Courses that you want to hide";
-  heading.style.textAlign = "center";
-  heading.style.marginBottom = "20px";
-  heading.style.fontSize = "20px";
-  heading.style.fontWeight = "bold";
 
   // Get all checkboxes
   // var checkboxes = getCheckboxes();
@@ -113,23 +179,6 @@ function createModal() {
   var applyButton = document.createElement("button");
   applyButton.id = "applyBtn";
   applyButton.innerHTML = "Apply";
-  applyButton.style.backgroundColor = "#4CAF50";
-  applyButton.style.border = "none";
-  applyButton.style.color = "white";
-  applyButton.style.padding = "5px 10px";
-  applyButton.style.borderRadius = "4px";
-  applyButton.style.float = "right";
-  applyButton.style.cursor = "default";
-
-  // Attach an onmouseover event listener
-  applyButton.addEventListener('mouseover', function () {
-    this.style.backgroundColor = 'rgb(0, 150, 0)';
-  });
-
-  // Attach an onmouseout event listener to revert the style when the mouse moves away
-  applyButton.addEventListener('mouseout', function () {
-    this.style.backgroundColor = '#4CAF50';
-  });
 
   var classesDiv = document.createElement("div");
   classesDiv.id = "classes";
@@ -182,6 +231,7 @@ function createModal() {
 }
 
 function mainFunction() {
+  styleElements();
   rerenderClasses();
   createModal();
 
@@ -206,46 +256,11 @@ function mainFunction() {
   }
 
   const button = document.createElement("button");
-  // button.onclick = triggerAlert;
+  button.id = "hideCoursesBtn";
   button.onclick = openModal;
-  button.style.background = 'transparent';
-  button.style.border = 'none';
   const img = document.createElement("img");
   img.src = "https://static.thenounproject.com/png/464129-200.png";
-  img.style.paddingRight = "17px";
-  img.style.paddingTop = "7px";
-  img.style.width = "30px";
-  img.style.height = "30px";
   button.appendChild(img);
-
-  // const circle = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  // circle.setAttribute("width", "100%");
-  // circle.setAttribute("height", "100%");
-  // circle.setAttribute("viewBox", "0 0 100 100");
-
-  // const circlePath = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  // circlePath.setAttribute("cx", "50");
-  // circlePath.setAttribute("cy", "50");
-  // circlePath.setAttribute("r", "40");
-  // circlePath.setAttribute("fill", "transparent");
-  // circlePath.setAttribute("stroke", "red");
-  // circlePath.setAttribute("stroke-width", "3");
-
-  // Add the circle to the button
-  // circle.appendChild(circlePath);
-  // button.appendChild(circle);
-
-  // Set the initial styles for the button
-  // button.style.position = 'relative';
-
-  // Add event listeners for mouseover and mouseout
-  // button.addEventListener('mouseover', function () {
-  //   circle.style.display = 'block';
-  // });
-
-  // button.addEventListener('mouseout', function () {
-  //   circle.style.display = 'none';
-  // });
 
   navDiv.prepend(button);
 }
