@@ -26,7 +26,6 @@ function rerenderClasses() {
   }
 }
 
-// Function to create a checkbox element
 function createCheckbox(name, label, checked = false) {
   var checkboxLabel = document.createElement("label");
   var checkbox = document.createElement("input");
@@ -42,10 +41,8 @@ function createCheckbox(name, label, checked = false) {
 }
 
 function getCheckboxes() {
-  // Get all classes
   const classes = getClasses();
 
-  // Create the checkboxes
   let hiddenCourses = JSON.parse(localStorage.getItem('hiddenCourses'));
   if (!hiddenCourses) {
     hiddenCourses = [];
@@ -284,10 +281,51 @@ function waitForDynamicObjects() {
   });
 }
 
-waitForDynamicObjects()
+function noPath(url) {
+  return url.split("/")[3] === undefined || url.split("/")[3] === "";
+}
+
+if (noPath(window.location.href)) {
+  waitForDynamicObjects()
   .then(() => {
     mainFunction();
   })
   .catch(error => {
     console.error(error);
   });
+}
+
+// Custom event to handle URL changes
+var urlChangeEvent = new Event('urlChange');
+
+// Function to check for URL changes
+function checkURLChange() {
+  if (window.location.href !== checkURLChange.currentURL) {
+    checkURLChange.currentURL = window.location.href;
+    document.dispatchEvent(urlChangeEvent);
+  }
+}
+
+checkURLChange.currentURL = window.location.href;
+
+window.addEventListener('popstate', checkURLChange);
+
+setInterval(checkURLChange, 200);
+
+document.addEventListener('urlChange', function (event) {
+  if (noPath(window.location.href)) {
+    waitForDynamicObjects()
+      .then(() => {
+        mainFunction();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  else {
+    const btn = document.getElementById("hideCoursesBtn");
+    if (btn) {
+      btn.remove();
+    }
+  }
+});

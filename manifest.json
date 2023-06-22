@@ -3,8 +3,7 @@
   "description": "A Chrome Extension to make Google Classroom better",
   "manifest_version": 3,
   "version": "1",
-  "permissions": ["scripting", "tabs"],
-  "host_permissions": ["*://classroom.google.com/*"],
+  "host_permissions": ["*://classroom.google.com/"],
   "content_scripts": [
     {
       "matches": ["*://classroom.google.com/*"],
