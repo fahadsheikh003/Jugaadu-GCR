@@ -137,7 +137,7 @@ function styleElements() {
 
     #hideCoursesBtn:hover {
       cursor: pointer;
-      background: rgba(0, 0, 0, 0.1);
+      background: rgb(245, 245, 245);
     }
 
     #hideCoursesBtn img {
@@ -310,7 +310,7 @@ checkURLChange.currentURL = window.location.href;
 
 window.addEventListener('popstate', checkURLChange);
 
-setInterval(checkURLChange, 200);
+setInterval(checkURLChange, 50);
 
 document.addEventListener('urlChange', function (event) {
   if (noPath(window.location.href)) {
