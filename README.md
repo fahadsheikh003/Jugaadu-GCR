@@ -13,8 +13,8 @@ Follow this installation procedure to get started with the extension. The instal
 
 ## Usage
 
-* After successful loading of Classrooms, a new button (![hide](https://github.com/fahadsheikh003/Jugaadu-GCR/assets/87650614/7b57ce67-2a3e-4dc9-80fa-ef25df44f357)
-) will appear on the left of join classroom button.
+* After successful loading of Classrooms, a new button (<img src="https://github.com/fahadsheikh003/Jugaadu-GCR/assets/87650614/7b57ce67-2a3e-4dc9-80fa-ef25df44f357" 
+ height="12px" width="16px"/>) will appear on the left of join classroom button.
 <p align="center">
   <img src="https://github.com/fahadsheikh003/Jugaadu-GCR/assets/87650614/31111633-410a-41d5-a238-e2e14b5e698d" />
 </p>
