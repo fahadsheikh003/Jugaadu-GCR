@@ -27,6 +27,7 @@ function rerenderClasses() {
 }
 
 function createCheckbox(name, label, checked = false) {
+  label = label.replace("&amp;", "&");
   var checkboxLabel = document.createElement("label");
   var checkbox = document.createElement("input");
   checkbox.type = "checkbox";
