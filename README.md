@@ -18,6 +18,7 @@ Follow this installation procedure to get started with the extension. The instal
 <p align="center">
   <img src="https://github.com/fahadsheikh003/Jugaadu-GCR/assets/87650614/31111633-410a-41d5-a238-e2e14b5e698d" />
 </p>
+
 * Just click on it and select the classrooms that you want to hide.
 * Click on Apply button and you are good to go.
 
